@@ -212,7 +212,10 @@
     }
 
     buildEvent = $.Event(EVENT_BUILD);
-    $this.one(EVENT_BUILD, options.build).trigger(buildEvent); // Only trigger once
+
+    if($this.one(EVENT_BUILD, options.build).trigger){
+      $this.one(EVENT_BUILD, options.build).trigger(buildEvent); // Only trigger once
+    }
 
     if (buildEvent.isDefaultPrevented()) {
       return;
@@ -325,7 +328,9 @@
     this.built = true;
     this.render();
     this.setData(options.data);
-    $this.one(EVENT_BUILT, options.built).trigger(EVENT_BUILT); // Only trigger once
+    if($this.one(EVENT_BUILT, options.built).trigger){
+      $this.one(EVENT_BUILT, options.built).trigger(EVENT_BUILT); // Only trigger once
+    }
   };
 
   prototype.unbuild = function () {
