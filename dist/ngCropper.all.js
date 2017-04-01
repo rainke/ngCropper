@@ -791,7 +791,9 @@
 
     this.$preview.each(function () {
       var $this = $(this),
-          data = $this.data(CROPPER_PREVIEW),
+          data = $this.data(CROPPER_PREVIEW);
+          if(typeof data === 'undefined') return;
+      var
           ratio = data.width / cropBox.width,
           newWidth = data.width,
           newHeight = cropBox.height * ratio;
